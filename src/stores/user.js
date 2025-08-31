@@ -1,4 +1,3 @@
-// File: src/stores/user.js
 import { defineStore } from 'pinia'
 import api from '@/api'
 import { ElMessage } from 'element-plus'
