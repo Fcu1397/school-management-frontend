@@ -48,50 +48,50 @@ const routes = [
                 component: () => import('@/views/student/MyGrades.vue'),
                 meta: { role: 'STUDENT' }
             },
-            {
-                path: 'student/profile',
-                name: 'StudentProfile',
-                component: () => import('@/views/student/Profile.vue'),
-                meta: { role: 'STUDENT' }
-            },
-            // 教師路由
-            {
-                path: 'teacher/classes',
-                name: 'TeacherClasses',
-                component: () => import('@/views/teacher/MyClasses.vue'),
-                meta: { role: 'TEACHER' }
-            },
-            {
-                path: 'teacher/students',
-                name: 'TeacherStudents',
-                component: () => import('@/views/teacher/StudentList.vue'),
-                meta: { role: 'TEACHER' }
-            },
-            {
-                path: 'teacher/grades',
-                name: 'TeacherGrades',
-                component: () => import('@/views/teacher/GradeManagement.vue'),
-                meta: { role: 'TEACHER' }
-            },
-            // 管理員路由
-            {
-                path: 'admin/users',
-                name: 'AdminUsers',
-                component: () => import('@/views/admin/UserManagement.vue'),
-                meta: { role: 'ADMIN' }
-            },
-            {
-                path: 'admin/courses',
-                name: 'AdminCourses',
-                component: () => import('@/views/admin/CourseManagement.vue'),
-                meta: { role: 'ADMIN' }
-            },
-            {
-                path: 'admin/classes',
-                name: 'AdminClasses',
-                component: () => import('@/views/admin/ClassManagement.vue'),
-                meta: { role: 'ADMIN' }
-            }
+            // {
+            //     path: 'student/profile',
+            //     name: 'StudentProfile',
+            //     component: () => import('@/views/student/Profile.vue'),
+            //     meta: { role: 'STUDENT' }
+            // },
+            // // 教師路由
+            // {
+            //     path: 'teacher/classes',
+            //     name: 'TeacherClasses',
+            //     component: () => import('@/views/teacher/MyClasses.vue'),
+            //     meta: { role: 'TEACHER' }
+            // },
+            // {
+            //     path: 'teacher/students',
+            //     name: 'TeacherStudents',
+            //     component: () => import('@/views/teacher/StudentList.vue'),
+            //     meta: { role: 'TEACHER' }
+            // },
+            // {
+            //     path: 'teacher/grades',
+            //     name: 'TeacherGrades',
+            //     component: () => import('@/views/teacher/GradeManagement.vue'),
+            //     meta: { role: 'TEACHER' }
+            // },
+            // // 管理員路由
+            // {
+            //     path: 'admin/users',
+            //     name: 'AdminUsers',
+            //     component: () => import('@/views/admin/UserManagement.vue'),
+            //     meta: { role: 'ADMIN' }
+            // },
+            // {
+            //     path: 'admin/courses',
+            //     name: 'AdminCourses',
+            //     component: () => import('@/views/admin/CourseManagement.vue'),
+            //     meta: { role: 'ADMIN' }
+            // },
+            // {
+            //     path: 'admin/classes',
+            //     name: 'AdminClasses',
+            //     component: () => import('@/views/admin/ClassManagement.vue'),
+            //     meta: { role: 'ADMIN' }
+            // }
         ]
     },
     {
