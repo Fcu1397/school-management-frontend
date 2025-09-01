@@ -55,7 +55,7 @@ export const useUserStore = defineStore('user', {
                     this.isLoggedIn = true
 
                     // 暫時使用假 token（實際應該從後端返回）
-                    this.token = btoa(JSON.stringify(userData))
+                    this.token = btoa(unescape(encodeURIComponent(JSON.stringify(userData))))
 
                     // 儲存到 localStorage
                     localStorage.setItem('token', this.token)

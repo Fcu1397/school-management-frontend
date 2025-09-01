@@ -3,7 +3,7 @@
     <!-- 側邊欄 -->
     <el-aside :width="isCollapse ? '64px' : '250px'" class="dashboard-aside">
       <div class="logo-container">
-        <img src="/logo.png" alt="Logo" class="logo" v-if="!isCollapse">
+        <img src="/vite.svg" alt="Logo" class="logo" v-if="!isCollapse">
         <span v-if="!isCollapse" class="logo-text">校務管理系統</span>
         <el-icon v-else class="logo-icon"><School /></el-icon>
       </div>
