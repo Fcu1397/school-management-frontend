@@ -154,6 +154,19 @@ const api = {
         return request.get('/courses')
     },
 
+    // ========== 管理員功能 ==========
+    getAdminAllUsers() {
+        return request.get('/admin/users')
+    },
+
+    getAdminAllCourses() {
+        return request.get('/admin/courses')
+    },
+
+    getAdminAllClasses() {
+        return request.get('/admin/classes')
+    },
+
     // 查詢課程的班級
     getClassesByCourse(courseId) {
         return request.get(`/courses/${courseId}/classes`)
@@ -180,6 +193,16 @@ const api = {
     // 資料庫檢查
     databaseCheck() {
         return request.get('/test/database')
+    },
+
+    // 取得個人資料
+    getProfile(userId) {
+        return request.get(`/profile/${userId}`)
+    },
+
+    // 更新個人資料
+    updateProfile(userId, profileData) {
+        return request.put(`/profile/${userId}`, profileData)
     }
 }
 

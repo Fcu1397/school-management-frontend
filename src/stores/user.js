@@ -2,12 +2,35 @@ import { defineStore } from 'pinia'
 import api from '@/api'
 import { ElMessage } from 'element-plus'
 
-export const useUserStore = defineStore('user', {
-    state: () => ({
+// Helper function to get initial state from localStorage
+const getInitialState = () => {
+    const token = localStorage.getItem('token');
+    const userInfo = localStorage.getItem('userInfo');
+
+    if (token && userInfo) {
+        try {
+            const parsedUserInfo = JSON.parse(userInfo);
+            return {
+                token: token,
+                userInfo: parsedUserInfo,
+                isLoggedIn: true,
+            };
+        } catch (e) {
+            // If JSON is invalid, clear storage and return default state
+            localStorage.removeItem('token');
+            localStorage.removeItem('userInfo');
+        }
+    }
+
+    return {
         userInfo: null,
         token: null,
-        isLoggedIn: false
-    }),
+        isLoggedIn: false,
+    };
+};
+
+export const useUserStore = defineStore('user', {
+    state: () => getInitialState(),
 
     getters: {
         // 取得使用者名稱
@@ -30,18 +53,6 @@ export const useUserStore = defineStore('user', {
     },
 
     actions: {
-        // 初始化（從 localStorage 恢復狀態）
-        initializeStore() {
-            const token = localStorage.getItem('token')
-            const userInfo = localStorage.getItem('userInfo')
-
-            if (token && userInfo) {
-                this.token = token
-                this.userInfo = JSON.parse(userInfo)
-                this.isLoggedIn = true
-            }
-        },
-
         // 登入
         async login(loginData) {
             try {
@@ -113,4 +124,3 @@ export const useUserStore = defineStore('user', {
         }
     }
 })
-

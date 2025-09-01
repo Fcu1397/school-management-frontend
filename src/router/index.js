@@ -48,12 +48,12 @@ const routes = [
                 component: () => import('@/views/student/MyGrades.vue'),
                 meta: { role: 'STUDENT' }
             },
-            // {
-            //     path: 'student/profile',
-            //     name: 'StudentProfile',
-            //     component: () => import('@/views/student/Profile.vue'),
-            //     meta: { role: 'STUDENT' }
-            // },
+            {
+                path: 'student/profile',
+                name: 'StudentProfile',
+                component: () => import('@/views/student/Profile.vue'),
+                meta: { role: 'STUDENT' }
+            },
             // // 教師路由
             // {
             //     path: 'teacher/classes',
@@ -73,25 +73,31 @@ const routes = [
             //     component: () => import('@/views/teacher/GradeManagement.vue'),
             //     meta: { role: 'TEACHER' }
             // },
-            // // 管理員路由
-            // {
-            //     path: 'admin/users',
-            //     name: 'AdminUsers',
-            //     component: () => import('@/views/admin/UserManagement.vue'),
-            //     meta: { role: 'ADMIN' }
-            // },
-            // {
-            //     path: 'admin/courses',
-            //     name: 'AdminCourses',
-            //     component: () => import('@/views/admin/CourseManagement.vue'),
-            //     meta: { role: 'ADMIN' }
-            // },
-            // {
-            //     path: 'admin/classes',
-            //     name: 'AdminClasses',
-            //     component: () => import('@/views/admin/ClassManagement.vue'),
-            //     meta: { role: 'ADMIN' }
-            // }
+            // 管理員路由
+            {
+                path: 'admin/users',
+                name: 'AdminUsers',
+                component: () => import('@/views/admin/UserManagement.vue'),
+                meta: { role: 'ADMIN' }
+            },
+            {
+                path: 'admin/courses',
+                name: 'AdminCourses',
+                component: () => import('@/views/admin/CourseManagement.vue'),
+                meta: { role: 'ADMIN' }
+            },
+            {
+                path: 'admin/classes',
+                name: 'AdminClasses',
+                component: () => import('@/views/admin/ClassManagement.vue'),
+                meta: { role: 'ADMIN' }
+            },
+            {
+                path: 'profile',
+                name: 'Profile',
+                component: () => import('@/views/Profile.vue'),
+                meta: { requiresAuth: true }
+            }
         ]
     },
     {
@@ -124,10 +130,15 @@ router.beforeEach((to, from, next) => {
     }
 
     // 角色權限檢查
-    if (to.meta.role && userStore.userRole !== to.meta.role && userStore.userRole !== 'ADMIN') {
-        ElMessage.error('沒有權限訪問此頁面')
-        next('/dashboard')
-        return
+    const requiredRole = to.meta.role;
+    if (requiredRole) {
+        const userRole = userStore.userRole;
+        // 如果使用者不是管理員，且角色不符合要求，則拒絕訪問
+        if (userRole !== 'ADMIN' && userRole !== requiredRole) {
+            ElMessage.error('沒有權限訪問此頁面');
+            next('/dashboard');
+            return;
+        }
     }
 
     next()
